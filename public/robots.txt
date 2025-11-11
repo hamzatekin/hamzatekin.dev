@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /private/
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://hamzatekin.dev/sitemap.xml
