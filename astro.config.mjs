@@ -22,4 +22,7 @@ export default defineConfig({
 
   // Enable compression for static files
   compressHTML: true,
+
+  // Set production site URL
+  site: 'https://hamzatekin.dev',
 });

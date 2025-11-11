@@ -72,6 +72,21 @@
   </head>
   <body>
     <slot />
+
+    <!-- Umami Analytics - Production Only -->
+    {import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev' && (
+      <>
+        <script async is:inline data-astro-rerun src="https://umami.hamzatekin.dev/script.js" data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d"></script>
+        <script is:inline>
+          document.addEventListener("astro:page-load", () => {
+            // Track page views after Astro navigation
+            if (window.umami) {
+              void window.umami.track((props) => ({ ...props }));
+            }
+          });
+        </script>
+      </>
+    )}
   </body>
 </html>
 
