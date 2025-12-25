@@ -4,56 +4,385 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <main class="dark min-h-screen bg-slate-950 text-slate-50 flex flex-col">
-    <section class="grow flex items-center justify-center container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl">
-        <header>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-slate-50">Hamza Tekin</h1>
-          <p class="text-xl sm:text-2xl text-slate-300 mb-8 font-medium">Product-minded TypeScript-first Engineer</p>
-        </header>
-
-        <div class="prose prose-invert prose-lg max-w-none mb-12">
-          <p class="text-lg sm:text-xl text-slate-400 leading-relaxed">
-            Product-minded TypeScript-first engineer with a frontend focus. I build clean, performant web apps with a
-            balance of speed, maintainability, and user-centric thinking, modern, and TypeScript-driven.
-          </p>
+  <div
+    class="dark min-h-screen bg-background text-foreground"
+    transition:animate="fade"
+  >
+    <main class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
+      <section id="hero" class="mb-24">
+        <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          Hamza Tekin
+        </h1>
+        <p class="mb-6 text-xl text-muted-foreground md:text-2xl">
+          Product-minded TypeScript-first Engineer
+        </p>
+        <p
+          class="mb-8 text-base leading-relaxed text-muted-foreground md:text-lg"
+        >
+          I design and build user-facing products with a frontend focus,
+          balancing speed, simplicity, and long-term maintainability.
+        </p>
+        <div class="mb-8 flex flex-wrap gap-3">
+          <a
+            href="https://github.com/hamzatekin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-github h-4 w-4"
+            >
+              <path
+                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+              ></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hamza-tekin-5a003858/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-linkedin h-4 w-4"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
         </div>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="#work"
+            data-slot="button"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 rounded-md px-6 has-[>svg]:px-4 bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            View selected work
+          </a>
+          <a
+            href="#contact"
+            data-slot="button"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4"
+          >
+            Contact
+          </a>
+        </div>
+      </section>
 
-        <nav aria-label="Social media and professional links">
-          <h2 class="sr-only">Connect with me</h2>
-          <div class="flex justify-center space-x-6">
-            <a
-              href="https://github.com/hamzatekin"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-slate-400 hover:text-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-950 rounded p-2"
-              aria-label="Visit my GitHub profile (opens in new tab)"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                ></path>
-              </svg>
-              <span class="sr-only">GitHub</span>
-            </a>
+      <div class="mb-24 h-px bg-border"></div>
 
-            <a
-              href="https://www.linkedin.com/in/hamza-tekin-5a003858/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-slate-400 hover:text-slate-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-950 rounded p-2"
-              aria-label="Visit my LinkedIn profile (opens in new tab)"
+      <section id="currently" class="mb-24">
+        <h2
+          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+        >
+          Currently
+        </h2>
+        <ul class="space-y-3">
+          <li class="flex gap-3 text-base leading-relaxed">
+            <span class="text-muted-foreground">—</span>
+            <span>
+              Building <span class="font-medium text-foreground">Liftium</span> —
+              an AI-powered strength training platform
+            </span>
+          </li>
+          <li class="flex gap-3 text-base leading-relaxed">
+            <span class="text-muted-foreground">—</span>
+            <span
+              >Working as a Product Engineer on AI &amp; infrastructure projects</span
             >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                ></path>
+          </li>
+          <li class="flex gap-3 text-base leading-relaxed">
+            <span class="text-muted-foreground">—</span>
+            <span
+              >Open to selective consulting and senior frontend / product roles</span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <div class="mb-24 h-px bg-border"></div>
+
+      <section id="work" class="mb-24">
+        <h2
+          class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+        >
+          Selected work
+        </h2>
+        <div class="space-y-6">
+          <a
+            href="https://liftiumai.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="mb-2 flex items-center gap-3">
+                  <h3 class="text-lg font-semibold text-foreground">Liftium</h3>
+                  <span
+                    class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
+                  >
+                    Product
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  AI-powered strength training platform focused on
+                  evidence-based programming.
+                </p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-up-right h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
               </svg>
-              <span class="sr-only">LinkedIn</span>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </section>
-  </main>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="mb-2 flex items-center gap-3">
+                  <h3 class="text-lg font-semibold text-foreground">
+                    Handshake
+                  </h3>
+                  <span
+                    class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
+                  >
+                    Contract
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  Product engineering on AI-driven infrastructure and MCP-based
+                  systems.
+                </p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-up-right h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </div>
+          </a>
+          <!-- <a
+            href="#"
+            class="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="mb-2 flex items-center gap-3">
+                  <h3 class="text-lg font-semibold text-foreground">
+                    TShirtPrintCenter
+                  </h3>
+                  <span
+                    class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
+                  >
+                    SaaS
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  Custom on-demand print platform integrated with Shopify.
+                </p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-up-right h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </div>
+          </a> -->
+        </div>
+      </section>
+
+      <div class="mb-24 h-px bg-border"></div>
+
+      <section id="how" class="mb-24">
+        <h2
+          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+        >
+          How I work
+        </h2>
+        <p class="mb-6 text-base leading-relaxed text-foreground">
+          I care deeply about clarity, long-term maintainability, and shipping
+          things that actually get used. I value simple systems, strong
+          fundamentals, and pragmatic engineering over novelty for its own sake.
+          I prefer working in small, end-to-end vertical slices that deliver
+          real value quickly.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span
+            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
+          >
+            Ship + iterate
+          </span>
+          <span
+            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
+          >
+            Boring tech, well-used
+          </span>
+          <span
+            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
+          >
+            UX matters
+          </span>
+        </div>
+      </section>
+
+      <div class="mb-24 h-px bg-border"></div>
+
+      <section id="contact" class="mb-24">
+        <h2
+          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+        >
+          Contact
+        </h2>
+        <div class="mb-6 flex items-center gap-2 text-base">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-mail h-4 w-4 text-muted-foreground"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          <a
+            href="mailto:hello@hamzatekin.dev"
+            class="text-foreground underline decoration-muted-foreground underline-offset-4 hover:decoration-foreground"
+          >
+            hello@hamzatekin.dev
+          </a>
+        </div>
+        <p class="mb-6 text-sm text-muted-foreground">
+          Best way to reach me is email. I reply within 1–2 days.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <a
+            href="https://github.com/hamzatekin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-github h-3.5 w-3.5"
+            >
+              <path
+                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+              ></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hamza-tekin-5a003858/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-linkedin h-3.5 w-3.5"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </section>
+
+      <footer
+        class="border-t border-border pt-8 text-center text-xs text-muted-foreground"
+      >
+        <p>© 2025 Hamza Tekin</p>
+        <a
+          href="/privacy"
+          class="mt-2 inline-block underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
+        >
+          Privacy Policy
+        </a>
+      </footer>
+    </main>
+  </div>
 </Layout>

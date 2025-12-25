@@ -1,7 +1,7 @@
 {
   "name": "hamzatekin.dev",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,8 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.5",
-    "tailwindcss": "^4.1.17"
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6",
+    "tailwindcss": "^4.1.18"
   }
 }
