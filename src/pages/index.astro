@@ -1,26 +1,16 @@
 ---
-import "../styles/global.css";
-import Layout from "../layouts/Layout.astro";
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <div
-    class="dark min-h-screen bg-background text-foreground"
-    transition:animate="fade"
-  >
+  <div class="dark min-h-screen bg-background text-foreground" transition:animate="fade">
     <main class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
       <section id="hero" class="mb-24">
-        <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Hamza Tekin
-        </h1>
-        <p class="mb-6 text-xl text-muted-foreground md:text-2xl">
-          Product-minded TypeScript-first Engineer
-        </p>
-        <p
-          class="mb-8 text-base leading-relaxed text-muted-foreground md:text-lg"
-        >
-          I design and build user-facing products with a frontend focus,
-          balancing speed, simplicity, and long-term maintainability.
+        <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">Hamza Tekin</h1>
+        <p class="mb-6 text-xl text-muted-foreground md:text-2xl">Product-minded TypeScript-first Engineer</p>
+        <p class="mb-8 text-base leading-relaxed text-muted-foreground md:text-lg">
+          I design and build user-facing products with a frontend focus, balancing speed, simplicity, and long-term maintainability.
         </p>
         <div class="mb-8 flex flex-wrap gap-3">
           <a
@@ -66,9 +56,7 @@ import Layout from "../layouts/Layout.astro";
               stroke-linejoin="round"
               class="lucide lucide-linkedin h-4 w-4"
             >
-              <path
-                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-              ></path>
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
               <rect width="4" height="12" x="2" y="9"></rect>
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
@@ -96,30 +84,21 @@ import Layout from "../layouts/Layout.astro";
       <div class="mb-24 h-px bg-border"></div>
 
       <section id="currently" class="mb-24">
-        <h2
-          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
-        >
-          Currently
-        </h2>
+        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Currently</h2>
         <ul class="space-y-3">
           <li class="flex gap-3 text-base leading-relaxed">
             <span class="text-muted-foreground">—</span>
             <span>
-              Building <span class="font-medium text-foreground">Liftium</span> —
-              an AI-powered strength training platform
+              Building <span class="font-medium text-foreground">Liftium</span> — an AI-powered strength training platform
             </span>
           </li>
           <li class="flex gap-3 text-base leading-relaxed">
             <span class="text-muted-foreground">—</span>
-            <span
-              >Working as a Product Engineer on AI &amp; infrastructure projects</span
-            >
+            <span>Working as a Product Engineer on AI &amp; infrastructure projects</span>
           </li>
           <li class="flex gap-3 text-base leading-relaxed">
             <span class="text-muted-foreground">—</span>
-            <span
-              >Open to selective consulting and senior frontend / product roles</span
-            >
+            <span>Open to selective consulting and senior frontend / product roles</span>
           </li>
         </ul>
       </section>
@@ -127,14 +106,10 @@ import Layout from "../layouts/Layout.astro";
       <div class="mb-24 h-px bg-border"></div>
 
       <section id="work" class="mb-24">
-        <h2
-          class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground"
-        >
-          Selected work
-        </h2>
+        <h2 class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground">Selected work</h2>
         <div class="space-y-6">
           <a
-            href="https://liftiumai.com"
+            href="https://liftium.app/"
             target="_blank"
             rel="noopener noreferrer"
             class="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
@@ -150,8 +125,7 @@ import Layout from "../layouts/Layout.astro";
                   </span>
                 </div>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  AI-powered strength training platform focused on
-                  evidence-based programming.
+                  AI-powered strength training platform focused on evidence-based programming.
                 </p>
               </div>
               <svg
@@ -178,9 +152,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="flex items-start justify-between gap-4">
               <div class="flex-1">
                 <div class="mb-2 flex items-center gap-3">
-                  <h3 class="text-lg font-semibold text-foreground">
-                    Handshake
-                  </h3>
+                  <h3 class="text-lg font-semibold text-foreground">Handshake</h3>
                   <span
                     class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
                   >
@@ -188,8 +160,7 @@ import Layout from "../layouts/Layout.astro";
                   </span>
                 </div>
                 <p class="text-sm leading-relaxed text-muted-foreground">
-                  Product engineering on AI-driven infrastructure and MCP-based
-                  systems.
+                  Product engineering on AI-driven infrastructure and MCP-based systems.
                 </p>
               </div>
               <svg
@@ -252,45 +223,23 @@ import Layout from "../layouts/Layout.astro";
       <div class="mb-24 h-px bg-border"></div>
 
       <section id="how" class="mb-24">
-        <h2
-          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
-        >
-          How I work
-        </h2>
+        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">How I work</h2>
         <p class="mb-6 text-base leading-relaxed text-foreground">
-          I care deeply about clarity, long-term maintainability, and shipping
-          things that actually get used. I value simple systems, strong
-          fundamentals, and pragmatic engineering over novelty for its own sake.
-          I prefer working in small, end-to-end vertical slices that deliver
-          real value quickly.
+          I care deeply about clarity, long-term maintainability, and shipping things that actually get used. I value simple systems, strong
+          fundamentals, and pragmatic engineering over novelty for its own sake. I prefer working in small, end-to-end vertical slices that
+          deliver real value quickly.
         </p>
         <div class="flex flex-wrap gap-2">
-          <span
-            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
-          >
-            Ship + iterate
-          </span>
-          <span
-            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
-          >
-            Boring tech, well-used
-          </span>
-          <span
-            class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"
-          >
-            UX matters
-          </span>
+          <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Ship + iterate </span>
+          <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Boring tech, well-used </span>
+          <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> UX matters </span>
         </div>
       </section>
 
       <div class="mb-24 h-px bg-border"></div>
 
       <section id="contact" class="mb-24">
-        <h2
-          class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground"
-        >
-          Contact
-        </h2>
+        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Contact</h2>
         <div class="mb-6 flex items-center gap-2 text-base">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -314,9 +263,7 @@ import Layout from "../layouts/Layout.astro";
             hello@hamzatekin.dev
           </a>
         </div>
-        <p class="mb-6 text-sm text-muted-foreground">
-          Best way to reach me is email. I reply within 1–2 days.
-        </p>
+        <p class="mb-6 text-sm text-muted-foreground">Best way to reach me is email. I reply within 1–2 days.</p>
         <div class="flex flex-wrap gap-2">
           <a
             href="https://github.com/hamzatekin"
@@ -361,9 +308,7 @@ import Layout from "../layouts/Layout.astro";
               stroke-linejoin="round"
               class="lucide lucide-linkedin h-3.5 w-3.5"
             >
-              <path
-                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-              ></path>
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
               <rect width="4" height="12" x="2" y="9"></rect>
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
@@ -372,9 +317,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </section>
 
-      <footer
-        class="border-t border-border pt-8 text-center text-xs text-muted-foreground"
-      >
+      <footer class="border-t border-border pt-8 text-center text-xs text-muted-foreground">
         <p>© 2025 Hamza Tekin</p>
         <a
           href="/privacy"
