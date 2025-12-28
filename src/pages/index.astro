@@ -105,6 +105,73 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="mb-24 h-px bg-border"></div>
 
+      <section id="open-source" class="mb-24">
+        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Open-source pulse</h2>
+        <p class="mb-6 text-base leading-relaxed text-foreground">
+          A lightweight snapshot area I use to experiment with GitHub API integrations and surface live stats from my public work.
+        </p>
+        <div class="space-y-4">
+          <div class="rounded-lg border border-border bg-card p-5">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-semibold text-foreground">Profile overview</h3>
+                <p class="text-sm text-muted-foreground">Quick signals pulled from my GitHub profile.</p>
+              </div>
+              <span
+                data-gh-profile="hamzatekin"
+                class="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+              >
+                Loading profile stats...
+              </span>
+            </div>
+            <div class="mt-4 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
+                <div class="text-xs uppercase tracking-wide text-muted-foreground">Public repos</div>
+                <div data-gh-metric="public_repos" class="text-base font-semibold text-foreground">--</div>
+              </div>
+              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
+                <div class="text-xs uppercase tracking-wide text-muted-foreground">Followers</div>
+                <div data-gh-metric="followers" class="text-base font-semibold text-foreground">--</div>
+              </div>
+              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
+                <div class="text-xs uppercase tracking-wide text-muted-foreground">Following</div>
+                <div data-gh-metric="following" class="text-base font-semibold text-foreground">--</div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-border bg-card p-5">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-semibold text-foreground">Featured repo check</h3>
+                <p class="text-sm text-muted-foreground">A card reserved for repo-level API experiments.</p>
+              </div>
+              <span
+                data-gh-repo="hamzatekin/liftium"
+                class="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+              >
+                hamzatekin/liftium
+              </span>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
+              <span data-gh-field="stargazers_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
+                Stars: --
+              </span>
+              <span data-gh-field="forks_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
+                Forks: --
+              </span>
+              <span data-gh-field="open_issues_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
+                Open issues: --
+              </span>
+            </div>
+          </div>
+        </div>
+        <p class="mt-6 text-xs text-muted-foreground">
+          This section is intentionally wired with data attributes so I can plug in a GitHub API script without changing the layout.
+        </p>
+      </section>
+
+      <div class="mb-24 h-px bg-border"></div>
+
       <section id="work" class="mb-24">
         <h2 class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground">Selected work</h2>
         <div class="space-y-6">
