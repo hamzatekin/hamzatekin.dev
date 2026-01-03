@@ -9,10 +9,10 @@ import Layout from '../layouts/Layout.astro';
       <section id="hero" class="mb-24">
         <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">Hamza Tekin</h1>
         <p class="mb-6 text-xl text-muted-foreground md:text-2xl">Product-minded TypeScript-first Engineer</p>
-        <p class="mb-8 text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p class="mb-6 text-base leading-relaxed text-muted-foreground md:text-lg">
           I design and build user-facing products with a frontend focus, balancing speed, simplicity, and long-term maintainability.
         </p>
-        <div class="mb-8 flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3">
           <a
             href="https://github.com/hamzatekin"
             target="_blank"
@@ -29,7 +29,7 @@ import Layout from '../layouts/Layout.astro';
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-github h-4 w-4"
+              class="h-4 w-4"
             >
               <path
                 d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
@@ -54,29 +54,13 @@ import Layout from '../layouts/Layout.astro';
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-linkedin h-4 w-4"
+              class="h-4 w-4"
             >
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
               <rect width="4" height="12" x="2" y="9"></rect>
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
             LinkedIn
-          </a>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <a
-            href="#work"
-            data-slot="button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 rounded-md px-6 has-[>svg]:px-4 bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            View selected work
-          </a>
-          <a
-            href="#contact"
-            data-slot="button"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4"
-          >
-            Contact
           </a>
         </div>
       </section>
@@ -94,6 +78,12 @@ import Layout from '../layouts/Layout.astro';
           </li>
           <li class="flex gap-3 text-base leading-relaxed">
             <span class="text-muted-foreground">—</span>
+            <span>
+              Maintaining <span class="font-medium text-foreground">Convoy</span> — an open-source reactive backend library for PostgreSQL
+            </span>
+          </li>
+          <li class="flex gap-3 text-base leading-relaxed">
+            <span class="text-muted-foreground">—</span>
             <span>Working as a Product Engineer on AI &amp; infrastructure projects</span>
           </li>
           <li class="flex gap-3 text-base leading-relaxed">
@@ -105,76 +95,68 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="mb-24 h-px bg-border"></div>
 
-      <section id="open-source" class="mb-24">
-        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Open-source pulse</h2>
-        <p class="mb-6 text-base leading-relaxed text-foreground">
-          A lightweight snapshot area I use to experiment with GitHub API integrations and surface live stats from my public work.
-        </p>
-        <div class="space-y-4">
-          <div class="rounded-lg border border-border bg-card p-5">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-lg font-semibold text-foreground">Profile overview</h3>
-                <p class="text-sm text-muted-foreground">Quick signals pulled from my GitHub profile.</p>
-              </div>
-              <span
-                data-gh-profile="hamzatekin"
-                class="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
-              >
-                Loading profile stats...
-              </span>
-            </div>
-            <div class="mt-4 grid gap-3 sm:grid-cols-3">
-              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
-                <div class="text-xs uppercase tracking-wide text-muted-foreground">Public repos</div>
-                <div data-gh-metric="public_repos" class="text-base font-semibold text-foreground">--</div>
-              </div>
-              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
-                <div class="text-xs uppercase tracking-wide text-muted-foreground">Followers</div>
-                <div data-gh-metric="followers" class="text-base font-semibold text-foreground">--</div>
-              </div>
-              <div class="rounded-md border border-border bg-background/60 px-3 py-2 text-sm">
-                <div class="text-xs uppercase tracking-wide text-muted-foreground">Following</div>
-                <div data-gh-metric="following" class="text-base font-semibold text-foreground">--</div>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-lg border border-border bg-card p-5">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-lg font-semibold text-foreground">Featured repo check</h3>
-                <p class="text-sm text-muted-foreground">A card reserved for repo-level API experiments.</p>
-              </div>
-              <span
-                data-gh-repo="hamzatekin/liftium"
-                class="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
-              >
-                hamzatekin/liftium
-              </span>
-            </div>
-            <div class="mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
-              <span data-gh-field="stargazers_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
-                Stars: --
-              </span>
-              <span data-gh-field="forks_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
-                Forks: --
-              </span>
-              <span data-gh-field="open_issues_count" class="rounded-md border border-border bg-background/60 px-3 py-2">
-                Open issues: --
-              </span>
-            </div>
-          </div>
-        </div>
-        <p class="mt-6 text-xs text-muted-foreground">
-          This section is intentionally wired with data attributes so I can plug in a GitHub API script without changing the layout.
-        </p>
-      </section>
-
-      <div class="mb-24 h-px bg-border"></div>
-
       <section id="work" class="mb-24">
         <h2 class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground">Selected work</h2>
         <div class="space-y-6">
+          <div
+            class="group rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <div class="mb-2 flex items-center gap-3">
+                  <h3 class="text-lg font-semibold text-foreground">Convoy</h3>
+                  <span
+                    class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
+                  >
+                    Open-source
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  Convex-style reactive backend for PostgreSQL. Real-time data synchronization with type-safe queries and subscriptions.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <a
+                    href="https://www.npmjs.com/package/@avvos/convoy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-accent"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3">
+                      <path
+                        d="M0 7.334v8h6.666v1.332H5.334v1.334h6.666v-2.666H5.334v-1.334h6.666v-6.666H0zm1.334 1.334h4v5.332h-1.334v-4h-1.332v4h-1.334V8.668zm13.332-1.334v8h1.334v-6.666h1.332v6.666h1.334v-6.666h1.332v6.666H24V7.334H14.666z"
+                      ></path>
+                    </svg>
+                    npm
+                  </a>
+                  <a
+                    href="https://github.com/hamzatekin/convoy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-accent"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3 w-3"
+                    >
+                      <path
+                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                      ></path>
+                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
           <a
             href="https://liftium.app/"
             target="_blank"
@@ -292,13 +274,13 @@ import Layout from '../layouts/Layout.astro';
       <section id="how" class="mb-24">
         <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">How I work</h2>
         <p class="mb-6 text-base leading-relaxed text-foreground">
-          I care deeply about clarity, long-term maintainability, and shipping things that actually get used. I value simple systems, strong
+          I care deeply about clarity, long-term maintainability, and shipping things that actually get used. I communicate early and often, and I default to transparency. I value simple systems, strong
           fundamentals, and pragmatic engineering over novelty for its own sake. I prefer working in small, end-to-end vertical slices that
           deliver real value quickly.
         </p>
         <div class="flex flex-wrap gap-2">
           <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Ship + iterate </span>
-          <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Boring tech, well-used </span>
+          <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Proven tech, well-used </span>
           <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> UX matters </span>
         </div>
       </section>
