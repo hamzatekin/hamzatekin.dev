@@ -6,20 +6,22 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
   <div class="dark min-h-screen bg-background text-foreground" transition:animate="fade">
     <main class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
-      <h1 class="mb-6 text-3xl font-semibold tracking-tight">Privacy Policy</h1>
-      <div class="space-y-4 text-base leading-relaxed text-muted-foreground">
+      <header>
+        <h1 class="mb-6 text-3xl font-semibold tracking-tight">Privacy Policy</h1>
+      </header>
+      <article class="space-y-4 text-base leading-relaxed text-muted-foreground">
         <p>I use privacy-friendly analytics (Umami) to understand general usage patterns.</p>
         <p>No cookies are used and no personal data is collected.</p>
         <p>Analytics data is collected anonymously and is not shared with third parties.</p>
-      </div>
-      <div class="mt-10">
+      </article>
+      <nav class="mt-10">
         <a
           href="/"
           class="text-sm text-foreground underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
         >
           Back to home
         </a>
-      </div>
+      </nav>
     </main>
   </div>
 </Layout>
