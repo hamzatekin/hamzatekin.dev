@@ -8,17 +8,17 @@ A lightning-fast, SEO-optimized personal portfolio website built with Astro and 
 - **🔍 SEO Optimized**: Complete meta tags, structured data, and semantic HTML
 - **📱 Responsive Design**: Perfect on all devices and screen sizes
 - **♿ Accessible**: WCAG compliant with screen reader support
-- **🎨 Modern Tech Stack**: Astro 5, TypeScript, Tailwind CSS 4
+- **🎨 Modern Tech Stack**: Astro 7, TypeScript, Tailwind CSS 4
 - **🚀 Performance First**: Sub-1s build time, optimized assets
 - **📊 Analytics Ready**: Structured data for search engines
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Astro](https://astro.build/) v5.15.5 (Static Output)
+- **Framework**: [Astro](https://astro.build/) v7 (Static Output)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4.1.17
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
 - **Icons**: Custom SVG icons
-- **Deployment**: Static site (compatible with any static host)
+- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) (or any static host / Docker + nginx)
 
 ## 📞 Contact
 
