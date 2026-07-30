@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio site (hamzatekin.dev) built with Astro 7, TypeScript, and Tailwind CSS 4. It ships as pure static HTML with no client-side JavaScript framework — the goal is maximum load speed and SEO.
+Personal portfolio site (hamzatekin.dev) built with Astro 7, TypeScript, and Tailwind CSS 4. It ships as pure static HTML and ships **zero** first-party JavaScript — the goal is maximum load speed and SEO. Keep it that way: page transitions are CSS-only, so anything that would add a client-side script needs a deliberate reason.
 
 ## Commands
 
@@ -26,8 +26,9 @@ Astro 7 uses a stricter Rust-based compiler that errors on invalid HTML (unclose
 
 - **Static output only.** `astro.config.mjs` sets `output: 'static'`, `compressHTML: true`, `trailingSlash: 'never'`, and `site: 'https://hamzatekin.dev'`. Tailwind is wired in as a Vite plugin (`@tailwindcss/vite`), not the Astro integration — global styles live in `src/styles/global.css`.
 - **Pages** live in `src/pages/` (`index.astro`, `privacy.astro`, `404.astro`) and map to routes by filename.
-- **`src/layouts/Layout.astro`** is the single shared shell. It owns the full `<head>`: meta tags, Open Graph/Twitter cards, JSON-LD `Person` structured data, favicons, and performance hints. It accepts `title`, `description`, and `noindex` props — pages pass their own, and the canonical/`og:url` are derived from `Astro.url`. It also mounts Astro's `<ClientRouter />` for view transitions. When adding SEO or head changes, edit here rather than per-page.
-- **Analytics** (Umami) is injected in `Layout.astro` and gated to production on the canonical domain only: `import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev'`. It re-tracks on `astro:page-load` because of client-side view transitions.
+- **`src/layouts/Layout.astro`** is the single shared shell. It owns the full `<head>`: meta tags, Open Graph/Twitter cards, JSON-LD `Person` structured data, favicons, and performance hints. It accepts `title`, `description`, and `noindex` props — pages pass their own, and the canonical/`og:url` are derived from `Astro.url`. When adding SEO or head changes, edit here rather than per-page.
+- **Analytics** (Umami) is injected in `Layout.astro` and gated to production on the canonical domain only: `import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev'`. Every navigation is a full page load, so Umami records views on its own — no manual re-tracking.
+- **Page transitions** are cross-document CSS view transitions: `@view-transition { navigation: auto; }` plus `::view-transition-old/new(root)` fades in `src/styles/global.css`, with a `prefers-reduced-motion` opt-out. Astro's `<ClientRouter />` and the `transition:*` directives are deliberately **not** used — they would reintroduce ~16 kB of JS. Chromium 126+ and Safari 18.2+ animate; Firefox has no cross-document support yet and navigates instantly.
 - **`public/`** holds static assets served as-is, including hand-maintained `sitemap.xml`, `robots.txt`, `_headers` (Cloudflare Pages), `.htaccess` (Apache), and the web manifest — these are not generated, so update them manually when routes change. Security headers live in three places (`_headers`, `nginx.conf`, `.htaccess`); change all three together.
 
 ## Deployment

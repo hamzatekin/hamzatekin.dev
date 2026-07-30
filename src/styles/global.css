@@ -32,3 +32,37 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Cross-document page transitions with no JavaScript. Chromium 126+ and
+   Safari 18.2+ cross-fade; Firefox has no support yet and navigates
+   instantly, which is the normal behaviour of a link. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: page-fade-out 90ms ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: page-fade-in 180ms ease-out both;
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

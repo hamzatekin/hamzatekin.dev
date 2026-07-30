@@ -1,6 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-
 interface Props {
   title?: string;
   description?: string;
@@ -17,15 +15,6 @@ const {
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href.replace(/\/$/, '');
 
 const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev';
-
-// Kept as a string: an inline <script> body with braces inside an Astro expression
-// is not parseable by prettier-plugin-astro.
-const trackPageViews = `document.addEventListener("astro:page-load", () => {
-  // Track page views after Astro navigation
-  if (window.umami) {
-    void window.umami.track((props) => ({ ...props }));
-  }
-});`;
 ---
 
 <!doctype html>
@@ -90,8 +79,6 @@ const trackPageViews = `document.addEventListener("astro:page-load", () => {
     <link rel="dns-prefetch" href="//github.com" />
     <link rel="dns-prefetch" href="//www.linkedin.com" />
 
-    <ClientRouter />
-
     <!-- Structured Data -->
     <script type="application/ld+json" is:inline>
       {
@@ -117,19 +104,11 @@ const trackPageViews = `document.addEventListener("astro:page-load", () => {
   <body>
     <slot />
 
-    <!-- Umami Analytics - Production Only -->
+    <!-- Umami Analytics - Production Only. Navigations are full page loads, so
+         Umami records each view itself; no manual re-tracking is needed. -->
     {
       analyticsEnabled && (
-        <>
-          <script
-            async
-            is:inline
-            data-astro-rerun
-            src="https://umami.hamzatekin.dev/script.js"
-            data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d"
-          />
-          <script is:inline set:html={trackPageViews} />
-        </>
+        <script async is:inline src="https://umami.hamzatekin.dev/script.js" data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d" />
       )
     }
   </body>

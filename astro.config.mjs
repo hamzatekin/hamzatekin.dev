@@ -12,7 +12,7 @@ export default defineConfig({
     format: 'directory',
   },
 
-  // No UI framework integration: the only client JS is Astro's ClientRouter
+  // No UI framework and no ClientRouter: the build emits zero JavaScript
   vite: {
     plugins: [tailwindcss()],
   },
