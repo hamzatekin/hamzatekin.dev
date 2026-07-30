@@ -1,8 +1,65 @@
 ---
 import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import Divider from '../components/Divider.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SocialLink from '../components/SocialLink.astro';
+import WorkCard from '../components/WorkCard.astro';
+import type { WorkLink } from '../components/WorkCard.astro';
 
 const year = new Date().getFullYear();
+
+const GITHUB_URL = 'https://github.com/hamzatekin';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/hamza-tekin-5a003858/';
+const EMAIL = 'hello@hamzatekin.dev';
+
+const socials = [
+  { href: GITHUB_URL, icon: 'github' as const, label: 'GitHub' },
+  { href: LINKEDIN_URL, icon: 'linkedin' as const, label: 'LinkedIn' },
+];
+
+// `emphasis` is the part of the line that gets the brighter foreground colour.
+const currently = [
+  { before: 'Working as a Frontend Engineer at ', emphasis: 'ReviewSolicitors', after: ' in Nottingham, UK' },
+  { before: 'Building ', emphasis: 'Liftium', after: ' — an AI-powered strength training platform' },
+  { before: 'Maintaining ', emphasis: 'Convoy', after: ' — an open-source reactive backend library for PostgreSQL' },
+  { before: 'Open to selective consulting and AI / product engineering roles', emphasis: '', after: '' },
+];
+
+const work: {
+  title: string;
+  badge: string;
+  description: string;
+  href?: string;
+  titleHref?: string;
+  links?: WorkLink[];
+}[] = [
+  {
+    title: 'ReviewSolicitors',
+    badge: 'Full-time',
+    description: 'Frontend Engineer, based in Nottingham, UK.',
+    href: 'https://www.reviewsolicitors.co.uk/',
+  },
+  {
+    title: 'Convoy',
+    badge: 'Open-source',
+    description: 'Convex-style reactive backend for PostgreSQL. Real-time data synchronization with type-safe queries and subscriptions.',
+    titleHref: 'https://github.com/hamzatekin/convoy',
+    links: [
+      { href: 'https://www.npmjs.com/package/@avvos/convoy', label: 'npm', icon: 'npm' },
+      { href: 'https://github.com/hamzatekin/convoy', label: 'GitHub', icon: 'github' },
+    ],
+  },
+  {
+    title: 'Liftium',
+    badge: 'Product',
+    description: 'AI-powered strength training platform focused on evidence-based programming.',
+    href: 'https://liftium.app/',
+  },
+];
+
+const principles = ['Ship + iterate', 'Proven tech, well-used', 'UX matters'];
 ---
 
 <Layout>
@@ -15,355 +72,90 @@ const year = new Date().getFullYear();
           I build AI-powered products end to end, from the systems and pipelines that make them work to the interfaces people actually use.
         </p>
         <nav aria-label="Social links">
-          <ul class="flex flex-wrap gap-3 list-none p-0">
-            <li>
-              <a
-                href="https://github.com/hamzatekin"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                  ></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/hamza-tekin-5a003858/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                LinkedIn
-              </a>
-            </li>
+          <ul class="flex list-none flex-wrap gap-3 p-0">
+            {
+              socials.map((social) => (
+                <li>
+                  <SocialLink {...social} />
+                </li>
+              ))
+            }
           </ul>
         </nav>
       </header>
 
-      <div class="mb-24 h-px bg-border"></div>
+      <Divider />
 
       <section id="currently" class="mb-24">
-        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Currently</h2>
+        <SectionHeading>Currently</SectionHeading>
         <ul class="space-y-3">
-          <li class="flex gap-3 text-base leading-relaxed">
-            <span class="text-muted-foreground">—</span>
-            <span>
-              Working as a Frontend Engineer at <span class="font-medium text-foreground">ReviewSolicitors</span> in Nottingham, UK
-            </span>
-          </li>
-          <li class="flex gap-3 text-base leading-relaxed">
-            <span class="text-muted-foreground">—</span>
-            <span>
-              Building <span class="font-medium text-foreground">Liftium</span> — an AI-powered strength training platform
-            </span>
-          </li>
-          <li class="flex gap-3 text-base leading-relaxed">
-            <span class="text-muted-foreground">—</span>
-            <span>
-              Maintaining <span class="font-medium text-foreground">Convoy</span> — an open-source reactive backend library for PostgreSQL
-            </span>
-          </li>
-          <li class="flex gap-3 text-base leading-relaxed">
-            <span class="text-muted-foreground">—</span>
-            <span>Open to selective consulting and AI / product engineering roles</span>
-          </li>
+          {
+            currently.map((item) => (
+              <li class="flex gap-3 text-base leading-relaxed">
+                <span class="text-muted-foreground">—</span>
+                <span>
+                  {item.before}
+                  {item.emphasis && <span class="font-medium text-foreground">{item.emphasis}</span>}
+                  {item.after}
+                </span>
+              </li>
+            ))
+          }
         </ul>
       </section>
 
-      <div class="mb-24 h-px bg-border"></div>
+      <Divider />
 
       <section id="work" class="mb-24">
-        <h2 class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground">Selected work</h2>
+        <SectionHeading spacing="wide">Selected work</SectionHeading>
         <div class="space-y-6">
-          <article
-            class="group rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
-          >
-            <a href="https://www.reviewsolicitors.co.uk/" target="_blank" rel="noopener noreferrer" class="block no-underline">
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex-1">
-                  <div class="mb-2 flex items-center gap-3">
-                    <h3 class="text-lg font-semibold text-foreground">ReviewSolicitors</h3>
-                    <span
-                      class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
-                    >
-                      Full-time
-                    </span>
-                  </div>
-                  <p class="text-sm leading-relaxed text-muted-foreground">Frontend Engineer, based in Nottingham, UK.</p>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-arrow-up-right h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  aria-hidden="true"
-                >
-                  <path d="M7 7h10v10"></path>
-                  <path d="M7 17 17 7"></path>
-                </svg>
-              </div>
-            </a>
-          </article>
-          <article
-            class="group rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
-          >
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex-1">
-                <div class="mb-2 flex items-center gap-3">
-                  <h3 class="text-lg font-semibold text-foreground">
-                    <a
-                      href="https://github.com/hamzatekin/convoy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="no-underline hover:underline decoration-muted-foreground underline-offset-4"
-                    >
-                      Convoy
-                    </a>
-                  </h3>
-                  <span
-                    class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
-                  >
-                    Open-source
-                  </span>
-                </div>
-                <p class="text-sm leading-relaxed text-muted-foreground">
-                  Convex-style reactive backend for PostgreSQL. Real-time data synchronization with type-safe queries and subscriptions.
-                </p>
-                <div class="mt-3 flex flex-wrap gap-2">
-                  <a
-                    href="https://www.npmjs.com/package/@avvos/convoy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-accent"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="h-3 w-3"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M0 7.334v8h6.666v1.332H5.334v1.334h6.666v-2.666H5.334v-1.334h6.666v-6.666H0zm1.334 1.334h4v5.332h-1.334v-4h-1.332v4h-1.334V8.668zm13.332-1.334v8h1.334v-6.666h1.332v6.666h1.334v-6.666h1.332v6.666H24V7.334H14.666z"
-                      ></path>
-                    </svg>
-                    npm
-                  </a>
-                  <a
-                    href="https://github.com/hamzatekin/convoy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-accent"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="h-3 w-3"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                      ></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg>
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article
-            class="group rounded-lg border border-border bg-card p-5 transition-all hover:border-accent-foreground/30 hover:bg-accent/50"
-          >
-            <a href="https://liftium.app/" target="_blank" rel="noopener noreferrer" class="block no-underline">
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex-1">
-                  <div class="mb-2 flex items-center gap-3">
-                    <h3 class="text-lg font-semibold text-foreground">Liftium</h3>
-                    <span
-                      class="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground"
-                    >
-                      Product
-                    </span>
-                  </div>
-                  <p class="text-sm leading-relaxed text-muted-foreground">
-                    AI-powered strength training platform focused on evidence-based programming.
-                  </p>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-arrow-up-right h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  aria-hidden="true"
-                >
-                  <path d="M7 7h10v10"></path>
-                  <path d="M7 17 17 7"></path>
-                </svg>
-              </div>
-            </a>
-          </article>
+          {work.map((item) => <WorkCard {...item} />)}
         </div>
       </section>
 
-      <div class="mb-24 h-px bg-border"></div>
+      <Divider />
 
       <section id="how" class="mb-24">
-        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">How I work</h2>
+        <SectionHeading>How I work</SectionHeading>
         <p class="mb-6 text-base leading-relaxed text-foreground">
           I care deeply about clarity, long-term maintainability, and shipping things that actually get used. I communicate early and often,
           and I default to transparency. I value simple systems, strong fundamentals, and pragmatic engineering over novelty for its own
           sake. I prefer working in small, end-to-end vertical slices that deliver real value quickly.
         </p>
-        <ul class="flex flex-wrap gap-2 list-none p-0">
-          <li><span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Ship + iterate </span></li>
-          <li><span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> Proven tech, well-used </span></li>
-          <li><span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium"> UX matters </span></li>
+        <ul class="flex list-none flex-wrap gap-2 p-0">
+          {
+            principles.map((principle) => (
+              <li>
+                <span class="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium">{principle}</span>
+              </li>
+            ))
+          }
         </ul>
       </section>
 
-      <div class="mb-24 h-px bg-border"></div>
+      <Divider />
 
       <section id="contact" class="mb-24">
-        <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">Contact</h2>
+        <SectionHeading>Contact</SectionHeading>
         <address class="mb-6 flex items-center gap-2 text-base not-italic">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-mail h-4 w-4 text-muted-foreground"
-            aria-hidden="true"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-          </svg>
+          <Icon name="mail" class="h-4 w-4 text-muted-foreground" />
           <a
-            href="mailto:hello@hamzatekin.dev"
+            href={`mailto:${EMAIL}`}
             class="text-foreground underline decoration-muted-foreground underline-offset-4 hover:decoration-foreground"
           >
-            hello@hamzatekin.dev
+            {EMAIL}
           </a>
         </address>
         <p class="mb-6 text-sm text-muted-foreground">Best way to reach me is email. I reply within 1–2 days.</p>
         <nav aria-label="Contact links">
-          <ul class="flex flex-wrap gap-2 list-none p-0">
-            <li>
-              <a
-                href="https://github.com/hamzatekin"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-github h-3.5 w-3.5"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-                  ></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/hamza-tekin-5a003858/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-xs font-medium transition-colors hover:bg-accent hover:border-accent-foreground/20"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-linkedin h-3.5 w-3.5"
-                  aria-hidden="true"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                LinkedIn
-              </a>
-            </li>
+          <ul class="flex list-none flex-wrap gap-2 p-0">
+            {
+              socials.map((social) => (
+                <li>
+                  <SocialLink {...social} size="sm" />
+                </li>
+              ))
+            }
           </ul>
         </nav>
       </section>
