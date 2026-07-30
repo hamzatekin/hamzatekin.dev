@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,10 +9,10 @@ export default defineConfig({
 
   // Optimize for static builds
   build: {
-    format: 'directory'
+    format: 'directory',
   },
 
-  // Disable client-side JavaScript for pure HTML output
+  // No UI framework integration: the only client JS is Astro's ClientRouter
   vite: {
     plugins: [tailwindcss()],
   },
