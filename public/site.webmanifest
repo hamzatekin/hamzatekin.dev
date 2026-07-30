@@ -1,5 +1,5 @@
 {
-  "name": "Hamza Tekin - Full-Stack Engineer",
+  "name": "Hamza Tekin - AI & Product Engineer",
   "short_name": "Hamza Tekin",
   "icons": [
     {
@@ -13,8 +13,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#0f172a",
+  "theme_color": "#0b0b0b",
+  "background_color": "#0b0b0b",
   "display": "standalone",
   "scope": "/",
   "start_url": "/"

@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from './Icon.astro';
+
+interface Props {
+  href: string;
+  icon: IconName;
+  label: string;
+  /** md is the hero row, sm the contact row. */
+  size?: 'md' | 'sm';
+}
+
+const { href, icon, label, size = 'md' } = Astro.props;
+
+const sizes = {
+  md: { link: 'gap-2 px-4 py-2.5 text-sm', icon: 'h-4 w-4' },
+  sm: { link: 'gap-2 px-3 py-2 text-xs', icon: 'h-3.5 w-3.5' },
+};
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    'inline-flex items-center rounded-lg border border-border bg-card font-medium transition-colors hover:border-accent-foreground/20 hover:bg-accent',
+    sizes[size].link,
+  ]}
+>
+  <Icon name={icon} class={sizes[size].icon} />
+  {label}
+</a>

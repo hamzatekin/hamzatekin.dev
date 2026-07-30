@@ -1,5 +1,20 @@
 ---
-import { ClientRouter } from "astro:transitions";
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Hamza Tekin - AI & Product Engineer',
+  description = 'AI & Product Engineer. I build AI-powered products end to end, from the systems and pipelines that make them work to the interfaces people actually use.',
+  noindex = false,
+} = Astro.props;
+
+// trailingSlash is 'never', so strip the slash Astro.url keeps on the site root.
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href.replace(/\/$/, '');
+
+const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev';
 ---
 
 <!doctype html>
@@ -8,46 +23,45 @@ import { ClientRouter } from "astro:transitions";
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamza Tekin - AI &amp; Product Engineer</title>
-    <meta
-      name="description"
-      content="AI & Product Engineer. I build AI-powered products end to end, from the systems and pipelines that make them work to the interfaces people actually use."
-    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <meta name="author" content="Hamza Tekin" />
     <meta
       name="keywords"
       content="AI engineer, product engineer, TypeScript, systems design, AI pipelines, web applications, frontend engineering"
     />
-  
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hamza Tekin – AI & Product Engineer" />
-    <meta
-      property="og:description"
-      content="AI & Product Engineer. I build AI-powered products end to end, from the systems behind them to the interfaces people use."
-    />
-    <meta property="og:url" content="https://hamzatekin.dev" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Hamza Tekin" />
     <meta property="og:image" content="https://hamzatekin.dev/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
-  
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Hamza Tekin – AI & Product Engineer" />
-    <meta
-      property="twitter:description"
-      content="AI & Product Engineer. I build AI-powered products end to end, from the systems behind them to the interfaces people use."
-    />
-    <meta property="twitter:image" content="https://hamzatekin.dev/og-image.jpg" />
-    <meta property="twitter:creator" content="@hamzatekin" />
-  
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://hamzatekin.dev/og-image.jpg" />
+    <meta name="twitter:creator" content="@hamzatekin" />
+
     <!-- Technical SEO -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <link rel="canonical" href="https://hamzatekin.dev" />
-  
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <>
+          <meta name="robots" content="index, follow" />
+          <meta name="googlebot" content="index, follow" />
+          <link rel="canonical" href={canonical} />
+        </>
+      )
+    }
+
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -55,64 +69,48 @@ import { ClientRouter } from "astro:transitions";
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-  
+
     <!-- Theme -->
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="msapplication-TileColor" content="#0f172a" />
-  
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="msapplication-TileColor" content="#0b0b0b" />
+
     <!-- Performance -->
     <meta name="generator" content={Astro.generator} />
     <link rel="dns-prefetch" href="//github.com" />
-    <link rel="dns-prefetch" href="//linkedin.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  
-    <!-- Preload -->
-    <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
+    <link rel="dns-prefetch" href="//www.linkedin.com" />
 
-    <ClientRouter />
-  
     <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Hamza Tekin",
-      "jobTitle": "AI & Product Engineer",
-      "description": "AI & Product Engineer building AI-powered products end to end",
-      "url": "https://hamzatekin.dev",
-      "sameAs": [
-        "https://github.com/hamzatekin",
-        "https://www.linkedin.com/in/hamza-tekin-5a003858/"
-      ],
-      "knowsAbout": [
-        "AI Engineering",
-        "Product Engineering",
-        "TypeScript",
-        "Systems Design",
-        "AI Pipelines",
-        "Frontend Engineering",
-        "Web Applications"
-      ]
-    }
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hamza Tekin",
+        "jobTitle": "AI & Product Engineer",
+        "description": "AI & Product Engineer building AI-powered products end to end",
+        "url": "https://hamzatekin.dev",
+        "sameAs": ["https://github.com/hamzatekin", "https://www.linkedin.com/in/hamza-tekin-5a003858/"],
+        "knowsAbout": [
+          "AI Engineering",
+          "Product Engineering",
+          "TypeScript",
+          "Systems Design",
+          "AI Pipelines",
+          "Frontend Engineering",
+          "Web Applications"
+        ]
+      }
     </script>
   </head>
   <body>
     <slot />
 
-    <!-- Umami Analytics - Production Only -->
-    {import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev' && (
-      <>
-        <script async is:inline data-astro-rerun src="https://umami.hamzatekin.dev/script.js" data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d"></script>
-        <script is:inline>
-          document.addEventListener("astro:page-load", () => {
-            // Track page views after Astro navigation
-            if (window.umami) {
-              void window.umami.track((props) => ({ ...props }));
-            }
-          });
-        </script>
-      </>
-    )}
+    <!-- Umami Analytics - Production Only. Navigations are full page loads, so
+         Umami records each view itself; no manual re-tracking is needed. -->
+    {
+      analyticsEnabled && (
+        <script async is:inline src="https://umami.hamzatekin.dev/script.js" data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d" />
+      )
+    }
   </body>
 </html>
 

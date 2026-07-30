@@ -1,0 +1,12 @@
+---
+interface Props {
+  /** Selected work needs a wider gap below the heading than the other sections. */
+  spacing?: 'normal' | 'wide';
+}
+
+const { spacing = 'normal' } = Astro.props;
+---
+
+<h2 class:list={['text-sm font-medium uppercase tracking-wider text-muted-foreground', spacing === 'wide' ? 'mb-8' : 'mb-6']}>
+  <slot />
+</h2>
