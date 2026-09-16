@@ -9,7 +9,7 @@ export default defineConfig({
 
   // Optimize for static builds
   build: {
-    format: 'directory',
+    format: 'file',
   },
 
   // No UI framework and no ClientRouter: the build emits zero JavaScript

@@ -11,8 +11,14 @@ const {
   noindex = false,
 } = Astro.props;
 
-// trailingSlash is 'never', so strip the slash Astro.url keeps on the site root.
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site).href.replace(/\/$/, '');
+// build.format is 'file', so Astro.url.pathname is '/index.html' or '/privacy.html' at build time.
+// Map that back to the clean route (trailingSlash is 'never'): '/' and '/privacy'.
+const routePath =
+  Astro.url.pathname
+    .replace(/\/index\.html$/, '/')
+    .replace(/\.html$/, '')
+    .replace(/\/$/, '') || '/';
+const canonical = new URL(routePath, Astro.site).href.replace(/\/$/, '');
 
 const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev';
 ---
