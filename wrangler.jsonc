@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Cloudflare Workers static assets. There is no Worker script: Cloudflare serves the Astro build in dist/ directly.
+  "name": "hamzatekin-dev",
+  "compatibility_date": "2026-07-09",
+  "assets": {
+    "directory": "./dist",
+    // Serves /privacy from privacy.html and redirects /privacy/ and /privacy.html to it, matching trailingSlash: 'never'.
+    "html_handling": "drop-trailing-slash",
+    // Unknown URLs get dist/404.html with a 404 status.
+    "not_found_handling": "404-page",
+  },
+  // New Workers get Workers Logs by default. Keep it off: the privacy notice says I don't see request logs.
+  "observability": { "enabled": false },
+}

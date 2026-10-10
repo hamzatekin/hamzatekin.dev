@@ -84,7 +84,7 @@ body {
   }
 
   & code {
-    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.9em] text-foreground;
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.9em] text-foreground wrap-anywhere;
   }
 }
 

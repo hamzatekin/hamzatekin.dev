@@ -1,29 +1,24 @@
 ---
-// Umami analytics, rendered by Layout.astro in production only.
+// Cloudflare Web Analytics, rendered by Layout.astro in production only.
 //
 // It runs under PECR's statistical-purposes exception (Schedule A1, paragraph 5), which requires an
-// easy, free way to object. So the tracker is only fetched when the visitor hasn't objected: the
-// switch on /privacy (stored under Umami's own `umami.disabled` key), Global Privacy Control, or
-// Do Not Track. An objecting browser never contacts the analytics server. The data-* options keep
-// query strings and fragments out of recorded URLs and limit tracking to the canonical domain.
-// Navigations are full page loads, so Umami records each view itself; no manual re-tracking.
+// easy, free way to object. So the beacon is only fetched when the visitor hasn't objected: the
+// switch on /privacy (stored under `analytics-off`), Global Privacy Control, or Do Not Track. An
+// objecting browser never loads it. Automatic injection must stay off in the Cloudflare dashboard
+// (Web Analytics > Manage site), otherwise Cloudflare adds the beacon to every page regardless.
+// The token-in-URL form is Cloudflare's documented way to insert the beacon from a script.
 ---
 
 <script is:inline>
   (() => {
     try {
-      if (localStorage.getItem('umami.disabled')) return;
+      // umami.disabled: objections saved before the switch from Umami (October 2026).
+      if (localStorage.getItem('analytics-off') || localStorage.getItem('umami.disabled')) return;
     } catch {}
     if (navigator.globalPrivacyControl || navigator.doNotTrack === '1') return;
     const script = document.createElement('script');
-    script.src = 'https://umami.hamzatekin.dev/script.js';
-    Object.assign(script.dataset, {
-      websiteId: '382aa4a4-e4f4-4467-82f2-551fbed8ce7d',
-      domains: 'hamzatekin.dev',
-      doNotTrack: 'true',
-      excludeSearch: 'true',
-      excludeHash: 'true',
-    });
+    script.type = 'module';
+    script.src = 'https://static.cloudflareinsights.com/beacon.min.js?token=c4e3ff04978a407daba87468bbdad109&spa=false';
     document.body.append(script);
   })();
 </script>

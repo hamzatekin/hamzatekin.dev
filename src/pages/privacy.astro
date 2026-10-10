@@ -8,7 +8,7 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
 
 <Layout
   title="Privacy notice - Hamza Tekin"
-  description="What personal data hamzatekin.dev handles and why. No cookies, self-hosted analytics you can switch off, and your rights under UK GDPR."
+  description="What personal data hamzatekin.dev handles and why. No cookies, analytics you can switch off, and your rights under UK GDPR."
 >
   <article class="prose-page mb-24">
     <h1 class="text-3xl font-semibold tracking-tight text-foreground">Privacy notice</h1>
@@ -24,7 +24,8 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
       <ul class="mt-3">
         <li>The site sets no cookies and has no advertising or cross-site tracking.</li>
         <li>
-          I count page views with Umami, an analytics tool I host myself. It does not store your IP address, and you can switch it off.
+          I count page views with Cloudflare Web Analytics, which has no visitor ID and does not store your IP address. You can switch it
+          off.
         </li>
         <li>If you email me, I use what you send to reply to you.</li>
       </ul>
@@ -50,42 +51,45 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
 
     <h2 id="analytics">Analytics</h2>
     <p>
-      I use <a href="https://umami.is/">Umami</a> to see which pages people read and how they found the site, so I can tell what is useful and
-      fix what is not. Umami runs on my own server, hosted by Hetzner in Helsinki, Finland. Nobody else gets the data, and I do not use it for
-      advertising or combine it with anything else.
+      I use <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a> to see which pages people read and how they found
+      the site, so I can tell what is useful and fix what is not. Cloudflare already hosts the site, so no other company is involved. I do not
+      use the data for advertising or combine it with anything else.
     </p>
-    <p>For each page you view, a small script sends the analytics server:</p>
+    <p>For each page you view, a small script from Cloudflare sends:</p>
     <ul>
-      <li>the address of the page, without any query string or fragment</li>
-      <li>the page title</li>
-      <li>the address of the site that linked you here, if there was one</li>
-      <li>your screen size and browser language</li>
+      <li>the address of the page, and of the site that linked you here if there was one</li>
+      <li>how long the page took to load and display</li>
+      <li>a random ID for that one page view, created in your browser and not saved</li>
     </ul>
     <p>
-      Umami works out your browser, operating system and device type from your user agent, and looks up your country, region and city from
-      your IP address. It does not store your IP address. To count unique visitors it calculates an ID from your IP address and user agent,
-      mixed with a secret that changes every month. Your visits within a month count as one visitor, and they cannot be linked to visits in
-      a later month.
+      Cloudflare works out your country, browser, operating system and device type from the request. It discards your IP address at the
+      nearest data centre and does not store it. There is no visitor ID: the script uses no cookies or local storage and does not
+      fingerprint your device, so nothing links one page view to another.
     </p>
-    <p>
-      I only look at totals, and I make no decisions about individual visitors. I still treat this data as personal data, because the
-      visitor ID and location come from your IP address.
-    </p>
+    <p>I only see totals in the Cloudflare dashboard, and I make no decisions about individual visitors.</p>
     <p><strong>Lawful basis:</strong> legitimate interests, in understanding how the site is used so I can improve it.</p>
     <p>
-      <strong>Storage and access on your device:</strong> reading your screen size and language counts as accessing information on your device.
-      PECR allows this without consent when it is only used to produce statistics for improving the site, you are told about it, and you can object
-      for free (Schedule A1, paragraph 5). Switching analytics off is how you object.
+      <strong>Storage and access on your device:</strong> the script reads the page address and load timings from your browser, which counts as
+      accessing information on your device. PECR allows this without consent when it is only used to produce statistics for improving the site,
+      you are told about it, and you can object for free (Schedule A1, paragraph 5). Cloudflare processes the data on my behalf, as my processor.
+      Switching analytics off is how you object.
     </p>
-    <p><strong>How long I keep it:</strong> 24 months, after which analytics records are deleted.</p>
+    <p>
+      <strong>How long it is kept:</strong> Cloudflare keeps the statistics for the limited period it sets for Web Analytics. I do not export
+      or copy them.
+    </p>
+    <p>
+      <strong>Earlier analytics:</strong> until 10 October 2026 the site used Umami, running on my own server in Finland. I deleted that data
+      when I switched to Cloudflare.
+    </p>
 
     <section aria-labelledby="turn-off" class="rounded-lg border border-border bg-card p-5">
       <h2 id="turn-off" class="pt-0!">Turning analytics off</h2>
-      <p class="mt-3">Analytics does not run, and your browser never contacts the analytics server, if any of these apply:</p>
+      <p class="mt-3">Analytics does not run, and your browser never loads Cloudflare's analytics script, if any of these apply:</p>
       <ul class="mt-3">
         <li>you switch it off below, which saves your choice in this browser</li>
         <li>your browser sends a Global Privacy Control or Do Not Track signal</li>
-        <li>JavaScript is turned off, or a content blocker blocks <code>umami.hamzatekin.dev</code></li>
+        <li>JavaScript is turned off, or a content blocker blocks <code>static.cloudflareinsights.com</code></li>
       </ul>
       <div id="analytics-choice" class="mt-5" hidden>
         <label class="flex cursor-pointer items-start gap-3 text-foreground">
@@ -119,9 +123,9 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
     <h2 id="cookies">Cookies and similar technologies</h2>
     <p>This site does not set any cookies. The only things it reads from or saves in your browser are:</p>
     <ul>
-      <li>your screen size and language, read by the analytics script described above</li>
+      <li>the page address and load timings, read by the analytics script described above</li>
       <li>
-        a <code>umami.disabled</code> entry in local storage, saved only if you switch analytics off. Each page checks for it so it can respect
+        an <code>analytics-off</code> entry in local storage, saved only if you switch analytics off. Each page checks for it so it can respect
         your choice. It stays until you switch analytics back on or clear this site's data in your browser.
       </li>
     </ul>
@@ -129,18 +133,19 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
 
     <h2 id="sharing">Who else handles your data</h2>
     <ul>
-      <li>Cloudflare, Inc. hosts the site, provides DNS and routes email. It acts as my processor under its data processing addendum.</li>
-      <li>Hetzner Online GmbH hosts the server that runs Umami, also as my processor.</li>
+      <li>
+        Cloudflare, Inc. hosts the site, provides DNS, runs the analytics and routes email. It acts as my processor under its data
+        processing addendum.
+      </li>
       <li>My email provider stores the messages you send me.</li>
     </ul>
     <p>I do not sell personal data or share it for advertising. I would only disclose it to anyone else if the law required me to.</p>
 
     <h2 id="transfers">Transfers outside the UK</h2>
     <p>
-      The analytics server is in Finland. UK law recognises EU and EEA countries as having adequate data protection, so no extra safeguards
-      are needed. Cloudflare runs a global network and is based in the United States. It is certified under the UK Extension to the EU-US
-      Data Privacy Framework, and its data processing addendum includes the ICO's International Data Transfer Addendum as a fallback. My
-      email provider may store messages outside the UK, under the transfer safeguards in its own terms.
+      Cloudflare runs a global network and is based in the United States. It is certified under the UK Extension to the EU-US Data Privacy
+      Framework, and its data processing addendum includes the ICO's International Data Transfer Addendum as a fallback. My email provider
+      may store messages outside the UK, under the transfer safeguards in its own terms.
     </p>
 
     <h2 id="rights">Your rights</h2>
@@ -154,8 +159,8 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
       <li>give it to you or another organisation in a portable format, where that applies</li>
     </ul>
     <p>
-      Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. It is free, and I will reply within one month. I usually cannot find your analytics
-      records, because nothing in them tells me which visits were yours, but I will tell you what I can do.
+      Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. It is free, and I will reply within one month. Analytics records hold nothing that
+      shows which visits were yours, so I cannot look them up, but I will tell you what I can do.
     </p>
 
     <h2 id="complaints">Complaints</h2>
@@ -173,11 +178,12 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
     <p>When anything here changes, I will update this page and the date at the top.</p>
   </article>
 
-  <!-- Apart from the analytics loader in Layout.astro, this is the site's only script: the switch has to
+  <!-- Apart from the analytics loader (Analytics.astro), this is the site's only script: the switch has to
        write to local storage. It is progressive enhancement, so without JavaScript the <noscript> text shows. -->
   <script is:inline>
     (() => {
-      const KEY = 'umami.disabled';
+      const KEY = 'analytics-off';
+      const LEGACY_KEY = 'umami.disabled'; // objections saved before the switch from Umami (October 2026)
       const choice = document.getElementById('analytics-choice');
       const box = document.getElementById('analytics-allowed');
       const status = document.getElementById('analytics-status');
@@ -204,6 +210,10 @@ const updated = { iso: '2026-10-10', label: '10 October 2026' };
         return;
       }
 
+      if (storage.getItem(LEGACY_KEY)) {
+        storage.setItem(KEY, '1');
+        storage.removeItem(LEGACY_KEY);
+      }
       box.checked = !storage.getItem(KEY);
       box.addEventListener('change', () => {
         if (box.checked) storage.removeItem(KEY);

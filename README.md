@@ -10,7 +10,7 @@ A lightning-fast, SEO-optimized personal portfolio website built with Astro and 
 - **♿ Accessible**: Conforms to WCAG 2.2 AA, with a public [accessibility statement](https://hamzatekin.dev/accessibility)
 - **🎨 Modern Tech Stack**: Astro 7, TypeScript, Tailwind CSS 4
 - **🚀 Performance First**: Sub-1s build time, optimized assets
-- **🔒 Privacy**: No cookies; self-hosted Umami analytics that honours Global Privacy Control, Do Not Track and an opt-out switch ([privacy notice](https://hamzatekin.dev/privacy))
+- **🔒 Privacy**: No cookies; Cloudflare Web Analytics that honours Global Privacy Control, Do Not Track and an opt-out switch ([privacy notice](https://hamzatekin.dev/privacy))
 
 ## 🛠 Tech Stack
 
@@ -18,7 +18,7 @@ A lightning-fast, SEO-optimized personal portfolio website built with Astro and 
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
 - **Icons**: Custom SVG icons
-- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) (or any static host / Docker + nginx)
+- **Deployment**: [Cloudflare Workers static assets](https://developers.cloudflare.com/workers/static-assets/) (or any static host / Docker + nginx)
 
 ## 📞 Contact
 
