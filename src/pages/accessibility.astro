@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const EMAIL = 'hello@hamzatekin.dev';
+// Update both after each accessibility review.
+const reviewed = { iso: '2026-10-10', label: '10 October 2026' };
+---
+
+<Layout
+  title="Accessibility statement - Hamza Tekin"
+  description="How accessible hamzatekin.dev is, how it was tested against WCAG 2.2 AA, and how to report a problem."
+>
+  <article class="prose-page mb-24">
+    <h1 class="text-3xl font-semibold tracking-tight text-foreground">Accessibility statement</h1>
+    <p class="text-sm">Last reviewed <time datetime={reviewed.iso}>{reviewed.label}</time></p>
+
+    <p>
+      I want everyone to be able to use this site, including people who use a screen reader, screen magnification, voice control or a
+      keyboard instead of a mouse. This statement covers every page on hamzatekin.dev.
+    </p>
+
+    <h2 id="status">Conformance status</h2>
+    <p>
+      This site fully conforms to the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> at level AA.
+      Fully conforms means every page meets all level A and AA success criteria, with no exceptions.
+    </p>
+    <p>
+      WCAG 2.2 AA is also the web requirement in EN 301 549 v4.1.1, the European standard for accessible ICT used with the European
+      Accessibility Act. This is a personal website, so neither that Act nor the UK's public sector accessibility regulations apply to it,
+      but I hold it to the same standard.
+    </p>
+
+    <h2 id="what-you-can-do">What you can do on this site</h2>
+    <ul>
+      <li>Zoom in to 400% without having to scroll sideways.</li>
+      <li>Change text size, spacing, fonts and colours with your browser settings or extensions without losing content.</li>
+      <li>Reach every link and control with a keyboard, with a clearly visible focus outline.</li>
+      <li>Find your way with a screen reader using headings, landmarks and link text that makes sense on its own.</li>
+      <li>Know in advance which links open a new tab, because screen readers announce it.</li>
+      <li>Turn off motion. Page transitions stop when your device is set to reduce motion.</li>
+      <li>
+        Get more contrast. Secondary text and borders get brighter when your device asks for more contrast, and the layout works with
+        Windows contrast themes.
+      </li>
+      <li>
+        Use the site without JavaScript. The only feature that needs it is the analytics switch on the <a href="/privacy#turn-off"
+          >privacy page</a
+        >.
+      </li>
+    </ul>
+
+    <h2 id="testing">How I tested</h2>
+    <p>The site was last tested on <time datetime={reviewed.iso}>{reviewed.label}</time>, with:</p>
+    <ul>
+      <li>automated checks with axe-core against the WCAG 2.2 A and AA rules, on every page, at desktop width and at 320 pixels wide</li>
+      <li>keyboard-only navigation through every page, checking focus order and focus visibility</li>
+      <li>reflow at 320 CSS pixels wide, the same as 400% zoom on a 1280 pixel screen, with and without WCAG's text spacing overrides</li>
+      <li>Windows contrast themes, reduced motion and increased contrast, emulated in Chromium</li>
+      <li>contrast ratios measured for every text and focus colour against its background</li>
+    </ul>
+
+    <h2 id="limitations">Known limitations</h2>
+    <p>
+      I do not know of any accessibility problems on this site. If you find one, please tell me. Links to GitHub, LinkedIn and npm go to
+      sites I do not control, and their accessibility may differ.
+    </p>
+
+    <h2 id="compatibility">Compatibility</h2>
+    <p>
+      The site is plain HTML and CSS. It is built to work in current versions of Chrome, Edge, Firefox and Safari, and with screen readers
+      such as VoiceOver, NVDA, JAWS and TalkBack.
+    </p>
+
+    <h2 id="feedback">Feedback and contact</h2>
+    <p>
+      If something on this site does not work for you, or you need any of it in a different format, email <a href={`mailto:${EMAIL}`}
+        >{EMAIL}</a
+      >. Tell me which page you were on and what went wrong. I will reply within 5 working days.
+    </p>
+
+    <h2 id="enforcement">If you are not happy with my response</h2>
+    <p>
+      In the UK, the <a href="https://www.equalityadvisoryservice.com/">Equality Advisory and Support Service (EASS)</a> gives free advice on
+      discrimination, including services that are not accessible.
+    </p>
+
+    <h2 id="preparation">Preparation of this statement</h2>
+    <p>
+      I wrote this statement on <time datetime="2026-10-10">10 October 2026</time> and last reviewed it on <time datetime={reviewed.iso}
+        >{reviewed.label}</time
+      >. I review it whenever the site changes in a way that could affect accessibility.
+    </p>
+  </article>
+</Layout>

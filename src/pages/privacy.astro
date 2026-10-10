@@ -1,30 +1,217 @@
 ---
-import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+
+const EMAIL = 'hello@hamzatekin.dev';
+// Update both when anything below changes.
+const updated = { iso: '2026-10-10', label: '10 October 2026' };
 ---
 
 <Layout
-  title="Privacy Policy - Hamza Tekin"
-  description="How hamzatekin.dev handles analytics: privacy-friendly Umami, no cookies, no personal data collected."
+  title="Privacy notice - Hamza Tekin"
+  description="What personal data hamzatekin.dev handles and why. No cookies, self-hosted analytics you can switch off, and your rights under UK GDPR."
 >
-  <div class="min-h-screen bg-background text-foreground">
-    <main class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
-      <header>
-        <h1 class="mb-6 text-3xl font-semibold tracking-tight">Privacy Policy</h1>
-      </header>
-      <article class="space-y-4 text-base leading-relaxed text-muted-foreground">
-        <p>I use privacy-friendly analytics (Umami) to understand general usage patterns.</p>
-        <p>No cookies are used and no personal data is collected.</p>
-        <p>Analytics data is collected anonymously and is not shared with third parties.</p>
-      </article>
-      <nav class="mt-10">
-        <a
-          href="/"
-          class="text-sm text-foreground underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
-        >
-          Back to home
-        </a>
-      </nav>
-    </main>
-  </div>
+  <article class="prose-page mb-24">
+    <h1 class="text-3xl font-semibold tracking-tight text-foreground">Privacy notice</h1>
+    <p class="text-sm">Last updated <time datetime={updated.iso}>{updated.label}</time></p>
+
+    <p>
+      This notice explains what personal data this website handles, why, and what you can do about it. It is written for the UK GDPR, the
+      Data Protection Act 2018 and the Privacy and Electronic Communications Regulations (PECR).
+    </p>
+
+    <section aria-labelledby="summary" class="rounded-lg border border-border bg-card p-5">
+      <h2 id="summary" class="pt-0!">In short</h2>
+      <ul class="mt-3">
+        <li>The site sets no cookies and has no advertising or cross-site tracking.</li>
+        <li>
+          I count page views with Umami, an analytics tool I host myself. It does not store your IP address, and you can switch it off.
+        </li>
+        <li>If you email me, I use what you send to reply to you.</li>
+      </ul>
+    </section>
+
+    <h2 id="who">Who is responsible for your data</h2>
+    <p>
+      I am Hamza Tekin, a software engineer based in Nottingham, UK. Under data protection law I am the controller of the personal data
+      described here. You can contact me at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+    </p>
+
+    <h2 id="visiting">Visiting the site</h2>
+    <p>
+      When your browser asks for a page, it sends some information automatically, including your IP address, the address of the page and
+      your browser's user agent. Cloudflare hosts the site and uses this information to deliver pages and protect the site from attacks.
+      Cloudflare may also ask your browser to report failed connections to it (Network Error Logging), which helps it find network faults.
+    </p>
+    <p>
+      I do not see these request logs. The Cloudflare dashboard shows me totals only, such as requests per day and the countries they came
+      from. Cloudflare keeps its logs as described in the <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy policy</a>.
+    </p>
+    <p><strong>Lawful basis:</strong> legitimate interests, in running a website that works and stays secure.</p>
+
+    <h2 id="analytics">Analytics</h2>
+    <p>
+      I use <a href="https://umami.is/">Umami</a> to see which pages people read and how they found the site, so I can tell what is useful and
+      fix what is not. Umami runs on my own server, hosted by Hetzner in Helsinki, Finland. Nobody else gets the data, and I do not use it for
+      advertising or combine it with anything else.
+    </p>
+    <p>For each page you view, a small script sends the analytics server:</p>
+    <ul>
+      <li>the address of the page, without any query string or fragment</li>
+      <li>the page title</li>
+      <li>the address of the site that linked you here, if there was one</li>
+      <li>your screen size and browser language</li>
+    </ul>
+    <p>
+      Umami works out your browser, operating system and device type from your user agent, and looks up your country, region and city from
+      your IP address. It does not store your IP address. To count unique visitors it calculates an ID from your IP address and user agent,
+      mixed with a secret that changes every month. Your visits within a month count as one visitor, and they cannot be linked to visits in
+      a later month.
+    </p>
+    <p>
+      I only look at totals, and I make no decisions about individual visitors. I still treat this data as personal data, because the
+      visitor ID and location come from your IP address.
+    </p>
+    <p><strong>Lawful basis:</strong> legitimate interests, in understanding how the site is used so I can improve it.</p>
+    <p>
+      <strong>Storage and access on your device:</strong> reading your screen size and language counts as accessing information on your device.
+      PECR allows this without consent when it is only used to produce statistics for improving the site, you are told about it, and you can object
+      for free (Schedule A1, paragraph 5). Switching analytics off is how you object.
+    </p>
+    <p><strong>How long I keep it:</strong> 24 months, after which analytics records are deleted.</p>
+
+    <section aria-labelledby="turn-off" class="rounded-lg border border-border bg-card p-5">
+      <h2 id="turn-off" class="pt-0!">Turning analytics off</h2>
+      <p class="mt-3">Analytics does not run, and your browser never contacts the analytics server, if any of these apply:</p>
+      <ul class="mt-3">
+        <li>you switch it off below, which saves your choice in this browser</li>
+        <li>your browser sends a Global Privacy Control or Do Not Track signal</li>
+        <li>JavaScript is turned off, or a content blocker blocks <code>umami.hamzatekin.dev</code></li>
+      </ul>
+      <div id="analytics-choice" class="mt-5" hidden>
+        <label class="flex cursor-pointer items-start gap-3 text-foreground">
+          <input id="analytics-allowed" type="checkbox" class="mt-1 size-5 shrink-0 cursor-pointer accent-foreground" />
+          <span>Include my visits in the site's analytics</span>
+        </label>
+        <p id="analytics-status" role="status" class="mt-3 text-sm"></p>
+      </div>
+      <noscript>
+        <p class="mt-5 text-foreground">
+          JavaScript is off in your browser, so the analytics script cannot run and none of your visits are counted.
+        </p>
+      </noscript>
+    </section>
+
+    <h2 id="email">Emailing me</h2>
+    <p>
+      If you email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>, I receive your email address, your name if you include it, and whatever you
+      write or attach. I use it to reply to you and, if we work together, to arrange that work. Cloudflare Email Routing receives mail for
+      hamzatekin.dev and forwards it to my personal inbox.
+    </p>
+    <p>
+      <strong>Lawful basis:</strong> legitimate interests, in replying to messages. If you contact me about a job or a project, it is also to
+      take steps you have asked for before we enter a contract.
+    </p>
+    <p>
+      <strong>How long I keep it:</strong> up to two years after our last exchange, unless the law requires me to keep it longer, for example
+      tax records for paid work.
+    </p>
+
+    <h2 id="cookies">Cookies and similar technologies</h2>
+    <p>This site does not set any cookies. The only things it reads from or saves in your browser are:</p>
+    <ul>
+      <li>your screen size and language, read by the analytics script described above</li>
+      <li>
+        a <code>umami.disabled</code> entry in local storage, saved only if you switch analytics off. Each page checks for it so it can respect
+        your choice. It stays until you switch analytics back on or clear this site's data in your browser.
+      </li>
+    </ul>
+    <p>Cloudflare may also save a Network Error Logging policy in your browser so it can report connection failures.</p>
+
+    <h2 id="sharing">Who else handles your data</h2>
+    <ul>
+      <li>Cloudflare, Inc. hosts the site, provides DNS and routes email. It acts as my processor under its data processing addendum.</li>
+      <li>Hetzner Online GmbH hosts the server that runs Umami, also as my processor.</li>
+      <li>My email provider stores the messages you send me.</li>
+    </ul>
+    <p>I do not sell personal data or share it for advertising. I would only disclose it to anyone else if the law required me to.</p>
+
+    <h2 id="transfers">Transfers outside the UK</h2>
+    <p>
+      The analytics server is in Finland. UK law recognises EU and EEA countries as having adequate data protection, so no extra safeguards
+      are needed. Cloudflare runs a global network and is based in the United States. It is certified under the UK Extension to the EU-US
+      Data Privacy Framework, and its data processing addendum includes the ICO's International Data Transfer Addendum as a fallback. My
+      email provider may store messages outside the UK, under the transfer safeguards in its own terms.
+    </p>
+
+    <h2 id="rights">Your rights</h2>
+    <p>You can ask me to:</p>
+    <ul>
+      <li>give you a copy of the personal data I hold about you</li>
+      <li>correct it if it is wrong</li>
+      <li>delete it</li>
+      <li>limit how I use it</li>
+      <li>stop using it, as you can object at any time to anything I do on the basis of legitimate interests</li>
+      <li>give it to you or another organisation in a portable format, where that applies</li>
+    </ul>
+    <p>
+      Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. It is free, and I will reply within one month. I usually cannot find your analytics
+      records, because nothing in them tells me which visits were yours, but I will tell you what I can do.
+    </p>
+
+    <h2 id="complaints">Complaints</h2>
+    <p>
+      If you are unhappy with how I have handled your data, email me first. I will acknowledge your complaint within 30 days, look into it
+      and tell you the outcome.
+    </p>
+    <p>
+      You can also complain to the Information Commissioner's Office (ICO), the UK regulator, at
+      <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a> or on 0303 123 1113. If you live in the EU or EEA, you can
+      complain to the data protection authority in your country.
+    </p>
+
+    <h2 id="changes">Changes to this notice</h2>
+    <p>When anything here changes, I will update this page and the date at the top.</p>
+  </article>
+
+  <!-- Apart from the analytics loader in Layout.astro, this is the site's only script: the switch has to
+       write to local storage. It is progressive enhancement, so without JavaScript the <noscript> text shows. -->
+  <script is:inline>
+    (() => {
+      const KEY = 'umami.disabled';
+      const choice = document.getElementById('analytics-choice');
+      const box = document.getElementById('analytics-allowed');
+      const status = document.getElementById('analytics-status');
+      choice.hidden = false;
+
+      const label = box.closest('label');
+      if (navigator.globalPrivacyControl || navigator.doNotTrack === '1') {
+        label.hidden = true;
+        status.textContent = 'Analytics is off, because your browser sends a Global Privacy Control or Do Not Track signal.';
+        return;
+      }
+
+      let storage = null;
+      try {
+        storage = window.localStorage;
+        storage.getItem(KEY);
+      } catch {
+        storage = null;
+      }
+      if (!storage) {
+        label.hidden = true;
+        status.textContent =
+          'Your browser blocks this site from saving data, so this switch cannot work. Turning on Global Privacy Control in your browser will stop analytics instead.';
+        return;
+      }
+
+      box.checked = !storage.getItem(KEY);
+      box.addEventListener('change', () => {
+        if (box.checked) storage.removeItem(KEY);
+        else storage.setItem(KEY, '1');
+        status.textContent = box.checked
+          ? 'Saved. Your visits will be counted again in this browser.'
+          : 'Saved. Your visits will not be counted in this browser.';
+      });
+    })();
+  </script>
 </Layout>

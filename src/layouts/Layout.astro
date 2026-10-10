@@ -1,4 +1,8 @@
 ---
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -21,10 +25,14 @@ const routePath =
 const canonical = new URL(routePath, Astro.site).href.replace(/\/$/, '');
 
 const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https://hamzatekin.dev';
+
+// The body is wrapped in <!--email_off--> markers so Cloudflare's Email Address Obfuscation leaves the
+// contact address alone. Otherwise it swaps the address for "[email protected]" and injects a
+// decoder script, which breaks the link without JavaScript.
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en-GB" class="dark">
   <head>
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
@@ -43,7 +51,7 @@ const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https
     <meta property="og:image" content="https://hamzatekin.dev/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en_GB" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -97,15 +105,18 @@ const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https
     </script>
   </head>
   <body>
-    <slot />
+    <!--email_off-->
+    <div class="min-h-screen bg-background text-foreground">
+      <div class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
+        <main>
+          <slot />
+        </main>
+        <SiteFooter currentPath={routePath} />
+      </div>
+    </div>
+    <!--/email_off-->
 
-    <!-- Umami Analytics - Production Only. Navigations are full page loads, so
-         Umami records each view itself; no manual re-tracking is needed. -->
-    {
-      analyticsEnabled && (
-        <script async is:inline src="https://umami.hamzatekin.dev/script.js" data-website-id="382aa4a4-e4f4-4467-82f2-551fbed8ce7d" />
-      )
-    }
+    {analyticsEnabled && <Analytics />}
   </body>
 </html>
 
