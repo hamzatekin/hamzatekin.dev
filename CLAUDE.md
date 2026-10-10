@@ -17,8 +17,8 @@ The project uses **pnpm** (`packageManager` is pinned in `package.json`). Astro 
 - `pnpm build` — build the static site to `dist/`
 - `pnpm preview` — preview the production build locally
 - `pnpm exec prettier --write .` — format (prettier with `prettier-plugin-astro`)
-- `pnpm deploy` — build, then deploy `dist/` to Cloudflare Pages (`wrangler pages deploy`)
-- `pnpm cf:preview` — build, then serve locally through the Cloudflare Pages runtime (`wrangler pages dev`)
+- `pnpm deploy` — build, then deploy `dist/` to Cloudflare Workers (`wrangler deploy`)
+- `pnpm cf:preview` — build, then serve locally through the Workers runtime on port 8787 (`wrangler dev`)
 
 There is no test suite or lint script configured. Type-checking comes from Astro's strict `tsconfig` (`astro/tsconfigs/strict`); `pnpm exec astro check` runs a type check but will prompt to install `@astrojs/check` + `typescript` the first time.
 
@@ -26,7 +26,7 @@ Astro 7 uses a stricter Rust-based compiler that errors on invalid HTML (unclose
 
 ## Architecture
 
-- **Static output only.** `astro.config.mjs` sets `output: 'static'`, `compressHTML: true`, `trailingSlash: 'never'`, `build.format: 'file'`, and `site: 'https://hamzatekin.dev'`. The file format matters: it emits `privacy.html` instead of `privacy/index.html`, so Cloudflare Pages serves `/privacy` with a 200 rather than 308-redirecting it to `/privacy/` (which Search Console flagged as "Page with redirect"). `Layout.astro` strips the `.html` when deriving the canonical URL. Tailwind is wired in as a Vite plugin (`@tailwindcss/vite`), not the Astro integration — global styles live in `src/styles/global.css`.
+- **Static output only.** `astro.config.mjs` sets `output: 'static'`, `compressHTML: true`, `trailingSlash: 'never'`, `build.format: 'file'`, and `site: 'https://hamzatekin.dev'`. The file format matters: it emits `privacy.html` instead of `privacy/index.html`, so `/privacy` is served with a 200 rather than redirected to `/privacy/` (Search Console flagged that redirect as "Page with redirect" when the site was on Cloudflare Pages). `Layout.astro` strips the `.html` when deriving the canonical URL. Tailwind is wired in as a Vite plugin (`@tailwindcss/vite`), not the Astro integration — global styles live in `src/styles/global.css`.
 - **Pages** live in `src/pages/` (`index.astro`, `privacy.astro`, `accessibility.astro`, `404.astro`) and map to routes by filename. A new route also needs adding to the footer links in `SiteFooter.astro` (every page links to every other, which is how the site meets WCAG 2.4.5) and to `public/sitemap.xml`.
 - **`src/layouts/Layout.astro`** is the single shared shell. It imports `global.css`, owns the full `<head>` (meta tags, Open Graph/Twitter cards, JSON-LD `Person` structured data, favicons, performance hints), and wraps each page in the shared container, `<main>`, and `SiteFooter`. Pages render only their main content. It accepts `title`, `description`, and `noindex` props — pages pass their own, and the canonical/`og:url` are derived from `Astro.url`. When adding SEO or head changes, edit here rather than per-page.
 - **Cloudflare email obfuscation.** The zone has Scrape Shield's Email Address Obfuscation on, which rewrites mailto links into `[email protected]` plus an injected decoder script. `Layout.astro` wraps the body in `<!--email_off-->` markers to opt out; keep them (Astro preserves HTML comments in the build).
@@ -34,13 +34,13 @@ Astro 7 uses a stricter Rust-based compiler that errors on invalid HTML (unclose
 - **Privacy notice** (`src/pages/privacy.astro`) lists every processor (Cloudflare for hosting, DNS, analytics and email routing), what the analytics beacon collects, lawful bases, retention (two years for email), transfers, rights, and the DUAA complaints route. Anything that adds a third party (fonts, embeds, scripts), a cookie, or new device storage must update it, and may need consent rather than the analytics exception. Bump its "Last updated" date with every change.
 - **Accessibility statement** (`src/pages/accessibility.astro`) claims full WCAG 2.2 AA conformance and lists how it was tested. Re-test (axe-core at desktop and 320px, keyboard, text spacing, forced colours) and bump the "Last reviewed" date after visual or structural changes.
 - **Page transitions** are cross-document CSS view transitions: `@view-transition { navigation: auto; }` plus `::view-transition-old/new(root)` fades in `src/styles/global.css`, with a `prefers-reduced-motion` opt-out. Astro's `<ClientRouter />` and the `transition:*` directives are deliberately **not** used — they would reintroduce ~16 kB of JS. Chromium 126+ and Safari 18.2+ animate; Firefox has no cross-document support yet and navigates instantly.
-- **`public/`** holds static assets served as-is, including hand-maintained `sitemap.xml`, `robots.txt`, `_headers` (Cloudflare Pages), `.htaccess` (Apache), and the web manifest — these are not generated, so update them manually when routes change. Security headers live in three places (`_headers`, `nginx.conf`, `.htaccess`); change all three together.
+- **`public/`** holds static assets served as-is, including hand-maintained `sitemap.xml`, `robots.txt`, `_headers` (Cloudflare), `.assetsignore` (keeps `.htaccess` out of the Workers upload), `.htaccess` (Apache), and the web manifest — these are not generated, so update them manually when routes change. Security headers live in three places (`_headers`, `nginx.conf`, `.htaccess`); change all three together.
 
 ## Deployment
 
 The build output (`dist/`) is a static site that any host can serve; two paths are wired up:
 
-- **Cloudflare Pages** (primary) — `wrangler.toml` sets `pages_build_output_dir = "./dist"`, so `pnpm deploy` / `pnpm cf:preview` and the Cloudflare dashboard all consume the Astro build. `pnpm` is pinned to only build the `esbuild` and `workerd` native deps (`onlyBuiltDependencies`).
+- **Cloudflare Workers static assets** (primary, moved from Cloudflare Pages in October 2026) — `wrangler.jsonc` defines an assets-only Worker named `hamzatekin-dev` with no Worker script, so requests never run code and aren't billed. `assets.directory` is `./dist`, `html_handling: "drop-trailing-slash"` serves `/privacy` from `privacy.html` and 307-redirects `/privacy/` and `/privacy.html` to it, and `not_found_handling: "404-page"` serves `404.html` with a 404 status. Workers Builds deploys `main` from GitHub, and the Worker name in the dashboard must match `name` in `wrangler.jsonc`. Keep `compatibility_date` no newer than the installed Wrangler supports, or `wrangler dev` refuses to start. `pnpm` is pinned to only build the `esbuild` and `workerd` native deps (`onlyBuiltDependencies`).
 - **Docker + nginx** (alternative) — the multi-stage `Dockerfile` builds with pnpm on `node:22-alpine`, then serves `dist/` from `nginx:alpine` using the checked-in `nginx.conf`. Because nginx serves the files, `nginx.conf` (not the Cloudflare or Apache `.htaccess` config) governs headers/redirects/caching for that path.
 
 ## Conventions

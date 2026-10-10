@@ -18,7 +18,7 @@ A lightning-fast, SEO-optimized personal portfolio website built with Astro and 
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
 - **Icons**: Custom SVG icons
-- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) (or any static host / Docker + nginx)
+- **Deployment**: [Cloudflare Workers static assets](https://developers.cloudflare.com/workers/static-assets/) (or any static host / Docker + nginx)
 
 ## 📞 Contact
 

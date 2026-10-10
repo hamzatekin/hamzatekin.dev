@@ -1,0 +1,2 @@
+# Files Wrangler leaves out of the Workers upload. .htaccess is only for Apache hosts.
+.htaccess

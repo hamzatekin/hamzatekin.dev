@@ -1,4 +1,4 @@
-# Cloudflare Pages headers. Mirrors nginx.conf and public/.htaccess.
+# Cloudflare Workers static assets headers. Mirrors nginx.conf and public/.htaccess.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
