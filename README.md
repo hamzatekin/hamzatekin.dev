@@ -4,13 +4,13 @@ A lightning-fast, SEO-optimized personal portfolio website built with Astro and 
 
 ## ✨ Features
 
-- **⚡ Instant Loading**: Pure static HTML generation - no JavaScript required
+- **⚡ Instant Loading**: Pure static HTML generation - works fully without JavaScript
 - **🔍 SEO Optimized**: Complete meta tags, structured data, and semantic HTML
 - **📱 Responsive Design**: Perfect on all devices and screen sizes
-- **♿ Accessible**: WCAG compliant with screen reader support
+- **♿ Accessible**: Conforms to WCAG 2.2 AA, with a public [accessibility statement](https://hamzatekin.dev/accessibility)
 - **🎨 Modern Tech Stack**: Astro 7, TypeScript, Tailwind CSS 4
 - **🚀 Performance First**: Sub-1s build time, optimized assets
-- **📊 Analytics Ready**: Structured data for search engines
+- **🔒 Privacy**: No cookies; self-hosted Umami analytics that honours Global Privacy Control, Do Not Track and an opt-out switch ([privacy notice](https://hamzatekin.dev/privacy))
 
 ## 🛠 Tech Stack
 

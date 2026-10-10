@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 import Divider from '../components/Divider.astro';
 import Icon from '../components/Icon.astro';
@@ -7,8 +6,6 @@ import SectionHeading from '../components/SectionHeading.astro';
 import SocialLink from '../components/SocialLink.astro';
 import WorkCard from '../components/WorkCard.astro';
 import type { WorkLink } from '../components/WorkCard.astro';
-
-const year = new Date().getFullYear();
 
 const GITHUB_URL = 'https://github.com/hamzatekin';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/hamza-tekin-5a003858/';
@@ -62,103 +59,86 @@ const work: {
 ---
 
 <Layout>
-  <div class="min-h-screen bg-background text-foreground">
-    <main class="mx-auto max-w-[700px] px-6 py-16 md:py-24">
-      <header id="hero" class="mb-24">
-        <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">Hamza Tekin</h1>
-        <p class="mb-6 text-xl text-muted-foreground md:text-2xl">Software Engineer</p>
-        <p class="mb-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          I build web apps and the backends behind them, mostly in TypeScript.
-        </p>
-        <nav aria-label="Social links">
-          <ul class="flex list-none flex-wrap gap-3 p-0">
-            {
-              socials.map((social) => (
-                <li>
-                  <SocialLink {...social} />
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
-      </header>
+  <header id="hero" class="mb-24">
+    <h1 class="mb-3 text-4xl font-semibold tracking-tight md:text-5xl">Hamza Tekin</h1>
+    <p class="mb-6 text-xl text-muted-foreground md:text-2xl">Software Engineer</p>
+    <p class="mb-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+      I build web apps and the backends behind them, mostly in TypeScript.
+    </p>
+    {/* role="list" keeps list semantics in Safari, which drops them when list-style is none. */}
+    <ul role="list" class="flex list-none flex-wrap gap-3 p-0">
+      {
+        socials.map((social) => (
+          <li>
+            <SocialLink {...social} />
+          </li>
+        ))
+      }
+    </ul>
+  </header>
 
-      <Divider />
+  <Divider />
 
-      <section id="currently" class="mb-24">
-        <SectionHeading>Currently</SectionHeading>
-        <ul class="space-y-3">
-          {
-            currently.map((item) => (
-              <li class="flex gap-3 text-base leading-relaxed">
-                <span class="text-muted-foreground">—</span>
-                {/* Astro renders a line break between these parts as a space, which would land before the comma in `after`. */}
-                {/* prettier-ignore */}
-                <span>{item.before}{item.emphasis && <span class="font-medium text-foreground">{item.emphasis}</span>}{item.after}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
+  <section id="currently" class="mb-24">
+    <SectionHeading>Currently</SectionHeading>
+    <ul role="list" class="space-y-3">
+      {
+        currently.map((item) => (
+          <li class="flex gap-3 text-base leading-relaxed">
+            <span class="text-muted-foreground" aria-hidden="true">
+              —
+            </span>
+            {/* Astro renders a line break between these parts as a space, which would land before the comma in `after`. */}
+            {/* prettier-ignore */}
+            <span>{item.before}{item.emphasis && <span class="font-medium text-foreground">{item.emphasis}</span>}{item.after}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
-      <Divider />
+  <Divider />
 
-      <section id="work" class="mb-24">
-        <SectionHeading spacing="wide">Selected work</SectionHeading>
-        <div class="space-y-6">
-          {work.map((item) => <WorkCard {...item} />)}
-        </div>
-      </section>
+  <section id="work" class="mb-24">
+    <SectionHeading spacing="wide">Selected work</SectionHeading>
+    <div class="space-y-6">
+      {work.map((item) => <WorkCard {...item} />)}
+    </div>
+  </section>
 
-      <Divider />
+  <Divider />
 
-      <section id="how" class="mb-24">
-        <SectionHeading>How I work</SectionHeading>
-        <p class="text-base leading-relaxed text-foreground">
-          I like code that reads clearly and is still easy to change a year later, and I care how the interface feels to the person using
-          it. My default is simple, well-known tools, learned properly. I work in small slices so changes reach users quickly, and I share
-          progress early, including when something is going off track.
-        </p>
-      </section>
+  <section id="how" class="mb-24">
+    <SectionHeading>How I work</SectionHeading>
+    <p class="text-base leading-relaxed text-foreground">
+      I like code that reads clearly and is still easy to change a year later, and I care how the interface feels to the person using it. My
+      default is simple, well-known tools, learned properly. I work in small slices so changes reach users quickly, and I share progress
+      early, including when something is going off track.
+    </p>
+  </section>
 
-      <Divider />
+  <Divider />
 
-      <section id="contact" class="mb-24">
-        <SectionHeading>Contact</SectionHeading>
-        <address class="mb-6 flex items-center gap-2 text-base not-italic">
-          <Icon name="mail" class="h-4 w-4 text-muted-foreground" />
-          <a
-            href={`mailto:${EMAIL}`}
-            class="text-foreground underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
-          >
-            {EMAIL}
-          </a>
-        </address>
-        <p class="mb-6 text-sm text-muted-foreground">Email is the best way to reach me, and I usually reply within a day or two.</p>
-        <nav aria-label="Contact links">
-          <ul class="flex list-none flex-wrap gap-2 p-0">
-            {
-              socials.map((social) => (
-                <li>
-                  <SocialLink {...social} size="sm" />
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
-      </section>
-
-      <footer class="border-t border-border pt-8 text-center text-xs text-muted-foreground">
-        <p>&copy; {year} Hamza Tekin</p>
-        <nav>
-          <a
-            href="/privacy"
-            class="tap-target mt-2 inline-block underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
-          >
-            Privacy Policy
-          </a>
-        </nav>
-      </footer>
-    </main>
-  </div>
+  <section id="contact" class="mb-24">
+    <SectionHeading>Contact</SectionHeading>
+    <address class="mb-6 flex items-center gap-2 text-base not-italic">
+      <Icon name="mail" class="h-4 w-4 text-muted-foreground" />
+      <a
+        href={`mailto:${EMAIL}`}
+        class="text-foreground underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground"
+      >
+        {EMAIL}
+      </a>
+    </address>
+    <p class="mb-6 text-sm text-muted-foreground">Email is the best way to reach me, and I usually reply within a day or two.</p>
+    <ul role="list" class="flex list-none flex-wrap gap-2 p-0">
+      {
+        socials.map((social) => (
+          <li>
+            <SocialLink {...social} size="sm" />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>

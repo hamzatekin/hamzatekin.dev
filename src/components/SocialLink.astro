@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import type { IconName } from './Icon.astro';
+import NewTabNote from './NewTabNote.astro';
 
 interface Props {
   href: string;
@@ -28,5 +29,5 @@ const sizes = {
   ]}
 >
   <Icon name={icon} class={sizes[size].icon} />
-  {label}
+  {label}<NewTabNote />
 </a>

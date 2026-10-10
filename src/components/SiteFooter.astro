@@ -1,0 +1,44 @@
+---
+interface Props {
+  /** Clean route of the current page ('/', '/privacy'), used to mark the current link. */
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const year = new Date().getFullYear();
+const EMAIL = 'hello@hamzatekin.dev';
+
+// Every page is listed here, so each one is reachable from every other (WCAG 2.4.5).
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/accessibility', label: 'Accessibility' },
+];
+
+// py-1.5 makes each link 28px tall, above the 24px minimum target size (WCAG 2.5.8). The current
+// page drops its underline as well as changing colour, so the cue doesn't rely on colour alone (1.4.1).
+const linkClass =
+  'inline-block py-1.5 underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground aria-[current=page]:text-foreground aria-[current=page]:no-underline';
+---
+
+<footer class="border-t border-border pt-8 text-center text-xs text-muted-foreground">
+  <nav aria-label="Footer">
+    <ul role="list" class="flex flex-wrap justify-center gap-x-6">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class={linkClass} aria-current={link.href === currentPath ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  {/* The contact address sits in the same place on every page (WCAG 3.2.6 Consistent Help). */}
+  <p class="mt-2">
+    <a href={`mailto:${EMAIL}`} class={linkClass}>{EMAIL}</a>
+  </p>
+  <p class="mt-2">&copy; {year} Hamza Tekin</p>
+</footer>

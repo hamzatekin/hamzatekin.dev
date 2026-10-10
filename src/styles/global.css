@@ -12,7 +12,8 @@
   --color-primary: #f5f5f5;
   --color-primary-foreground: #0b0b0b;
   --color-input: #1a1a1a;
-  --color-ring: #3f3f46;
+  /* Focus outline: 13:1 against the background, so it stays visible on cards too (WCAG 1.4.11, 2.4.13). */
+  --color-ring: #d4d4d8;
   --color-destructive: #ef4444;
 
   /* Tailwind's built-in ease-out is too soft; this one responds immediately. */
@@ -27,6 +28,14 @@ html,
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
+}
+
+/* Visitors who ask the OS for more contrast get brighter secondary text and borders. */
+@media (prefers-contrast: more) {
+  :root {
+    --color-muted-foreground: #d4d4d8;
+    --color-border: #71717a;
+  }
 }
 
 /* Keyboard focus must stay visible against the dark cards. */
@@ -47,6 +56,35 @@ body {
     top: 50%;
     height: 44px;
     translate: 0 -50%;
+  }
+}
+
+/* Long-form pages (privacy notice, accessibility statement). */
+@utility prose-page {
+  @apply space-y-4 text-base leading-relaxed text-muted-foreground;
+
+  & h2 {
+    @apply pt-8 text-lg font-semibold tracking-tight text-foreground;
+  }
+
+  & h3 {
+    @apply pt-2 text-base font-semibold text-foreground;
+  }
+
+  & ul {
+    @apply list-disc space-y-2 pl-5 marker:text-muted-foreground;
+  }
+
+  & a {
+    @apply text-foreground underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-foreground;
+  }
+
+  & strong {
+    @apply font-medium text-foreground;
+  }
+
+  & code {
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-[0.9em] text-foreground;
   }
 }
 
