@@ -6,8 +6,8 @@ interface Props {
 }
 
 const {
-  title = 'Hamza Tekin - AI & Product Engineer',
-  description = 'AI & Product Engineer. I build AI-powered products end to end, from the systems and pipelines that make them work to the interfaces people actually use.',
+  title = 'Hamza Tekin - Software Engineer',
+  description = 'Software engineer in Nottingham, UK. I build web apps and the backends behind them, mostly in TypeScript.',
   noindex = false,
 } = Astro.props;
 
@@ -32,10 +32,7 @@ const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Hamza Tekin" />
-    <meta
-      name="keywords"
-      content="AI engineer, product engineer, TypeScript, systems design, AI pipelines, web applications, frontend engineering"
-    />
+    <meta name="keywords" content="software engineer, TypeScript, frontend engineering, PostgreSQL, systems design, web applications" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -91,19 +88,11 @@ const analyticsEnabled = import.meta.env.PROD && import.meta.env.SITE === 'https
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Hamza Tekin",
-        "jobTitle": "AI & Product Engineer",
-        "description": "AI & Product Engineer building AI-powered products end to end",
+        "jobTitle": "Software Engineer",
+        "description": "Software engineer in Nottingham, UK, building web apps and the backends behind them",
         "url": "https://hamzatekin.dev",
         "sameAs": ["https://github.com/hamzatekin", "https://www.linkedin.com/in/hamza-tekin-5a003858/"],
-        "knowsAbout": [
-          "AI Engineering",
-          "Product Engineering",
-          "TypeScript",
-          "Systems Design",
-          "AI Pipelines",
-          "Frontend Engineering",
-          "Web Applications"
-        ]
+        "knowsAbout": ["Software Engineering", "TypeScript", "Frontend Engineering", "PostgreSQL", "Systems Design", "Web Applications"]
       }
     </script>
   </head>
